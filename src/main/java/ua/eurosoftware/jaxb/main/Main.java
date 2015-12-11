@@ -1,3 +1,5 @@
+package ua.eurosoftware.jaxb.main;
+
 
 import generated.Employee;
 import generated.Name;
