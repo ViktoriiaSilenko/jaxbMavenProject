@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:element name="position" type="xsd:string"/>
+    <xsd:element name="department" type="xsd:string"/>
+    <xsd:element name="firstName" type="xsd:string"/>
+    <xsd:element name="lastName" type="xsd:string"/>
+    <xsd:element name="age" type="xsd:nonNegativeInteger"/>
+    <xsd:element name="name">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="firstName"/>
+                <xsd:element ref="lastName"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:simpleType name="currencyType">  
+        <xsd:restriction base="xsd:decimal">  
+            <xsd:minInclusive value="0.00"/>  
+        </xsd:restriction>  
+    </xsd:simpleType>
+
+    <xsd:element name="salary">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="currencyType">
+                    <xsd:attribute name="currency">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:enumeration value="dollars" />
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:attribute>
+                </xsd:extension>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="employee">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="name"/>
+                <xsd:element ref="age"/>
+                <xsd:element ref="position"/>
+                <xsd:element ref="department"/>
+                <xsd:element ref="salary"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:string" use="optional"/>
+        </xsd:complexType>
+    </xsd:element>
+        
+    <xsd:element name="employees">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" minOccurs="1" ref="employee"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+</xsd:schema>
